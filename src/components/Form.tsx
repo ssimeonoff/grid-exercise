@@ -78,7 +78,19 @@ const Form: React.FC<Props> = ({ addTile }) => {
               placeholder="Image path"
               required
             />
-            <Button onClick={() => setShowForm(false)}>Cancel</Button>
+            <Button
+              type="button"
+              onClick={() => {
+                setShowForm(false);
+                setFormData({
+                  title: "",
+                  description: "",
+                  imagePath: "",
+                });
+              }}
+            >
+              Cancel
+            </Button>
             <Button type="submit">Submit</Button>
           </form>
         </FormContainer>

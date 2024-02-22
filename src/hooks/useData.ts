@@ -3,12 +3,6 @@ import data from "../data.json";
 
 const LOCAL_STORAGE_DATA_KEY = "customTiles";
 
-interface GridElement {
-  title: string;
-  description: string;
-  imagePath: string;
-}
-
 interface GridElementId {
   title: string;
   description: string;
@@ -25,7 +19,7 @@ export interface FormType {
 
 const useData = () => {
   const [array, setArray] = useState<GridElementId[]>([]);
-  const [customArray, setCustomArray] = useState<GridElement[]>([]);
+  const [customArray, setCustomArray] = useState<FormType[]>([]);
 
   const getLocalStorageData = () => {
     const savedData = localStorage.getItem(LOCAL_STORAGE_DATA_KEY);
@@ -62,17 +56,16 @@ const useData = () => {
 
   const addTile = (formData: FormType) => {
     //add the new tile at the beginning
-    customArray.unshift(formData);
-    localStorage.setItem(LOCAL_STORAGE_DATA_KEY, JSON.stringify(customArray));
-    getLocalStorageData();
+    const newArray = [formData, ...customArray];
+    setCustomArray(newArray);
+    localStorage.setItem(LOCAL_STORAGE_DATA_KEY, JSON.stringify(newArray));
   };
 
   const deleteTile = (id: number) => {
-    localStorage.setItem(
-      LOCAL_STORAGE_DATA_KEY,
-      JSON.stringify(customArray.filter((item, index) => index !== id))
-    );
-    getLocalStorageData();
+    //delete a tile
+    const newArray = customArray.filter((item, index) => index !== id);
+    setCustomArray(newArray);
+    localStorage.setItem(LOCAL_STORAGE_DATA_KEY, JSON.stringify(newArray));
   };
 
   return {

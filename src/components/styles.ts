@@ -67,10 +67,11 @@ const Input = styled.input`
   padding: 5px;
 `;
 
-const ClearButton = styled.div`
+const ClearButton = styled.button`
   position: absolute;
-  right: 8px;
-  top: 2px;
+  right: 5px;
+  top: 5px;
+  border: none;
   cursor: pointer;
 `;
 

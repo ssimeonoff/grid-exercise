@@ -35,7 +35,10 @@ const Tile: React.FC<Props> = ({
           ✖
         </DeleteButton>
       )}
-      <Image src={imagePath} alt={description} />
+      <Image
+        src={imagePath.replace(/&amp;/g, "&").replace("w=800", "w=200")}
+        alt={description}
+      />
     </TileContainer>
   );
 };
